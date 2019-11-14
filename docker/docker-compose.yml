@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  db:
+    image: lumen-api-test-mysql:5.7
+    container_name: "lumen-api-test-mysql"
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_VERSION=${MYSQL_VERSION}
+        - HOST_USER_UID=${HOST_USER_UID}
+    ports:
+      - "${MYSQL_HOST_PORT}:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - "./storage/mysql:/var/lib/mysql:delegated"
+  nginx-php:
+    image: lumen-api-test-nginx-php:7.3
+    container_name: lumen-api-test-nginx-php
+    build:
+      context: ./nginx-php
+      args:
+        - HOST_USER_UID=${HOST_USER_UID}
+    ports:
+      - ${NGINX_HTTP_HOST_PORT}:80
+    volumes:
+      - "../:/app:cached"

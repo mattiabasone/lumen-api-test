@@ -1,0 +1,6 @@
+[program:my-app-queue]
+command=/usr/bin/php7.3 /app/artisan queue:work --tries=1 --queue=myqueue
+user=app_test
+numprocs=1
+autostart=true
+autorestart=true

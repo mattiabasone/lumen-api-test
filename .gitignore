@@ -1,5 +1,7 @@
 /vendor
 /.idea
-Homestead.json
-Homestead.yaml
-.env
+**/.env
+
+docker/storage/mysql/*
+
+!docker/storage/mysql/.gitkeep
