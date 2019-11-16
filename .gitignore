@@ -1,4 +1,8 @@
 /vendor
 /.idea
+.composer/*
 docker/storage/*
 _ide_helper.php
+
+storage/oauth-private.key
+storage/oauth-public.key

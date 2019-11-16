@@ -3,7 +3,6 @@
 namespace App\Integration\Product\Repositories;
 
 use App\Models\Product;
-use App\Models\User;
 use Domain\Product\Repository\ProductRepository;
 use Domain\Product\Repository\Exceptions\ErrorDeletingProductException;
 use Domain\Product\Repository\Exceptions\ErrorUpdatingProductException;
@@ -19,9 +18,16 @@ class ProductEloquentRepository implements ProductRepository
         return Product::query()->find($productId);
     }
 
-    public function create(array $productData): void
+    public function exists(int $productId): bool
     {
-        Product::create($productData);
+        return Product::query()
+            ->where('id', '=', $productId)
+            ->exists();
+    }
+
+    public function create(array $productData): Product
+    {
+        return Product::create($productData);
     }
 
     /**

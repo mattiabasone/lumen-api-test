@@ -11,7 +11,7 @@ interface UserRepository
 {
     public function getById(int $userId): ?User;
 
-    public function create(array $userData): void;
+    public function create(array $userData): User;
 
     public function update(array $userData, int $userId): void;
 

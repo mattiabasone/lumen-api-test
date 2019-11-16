@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Api\V1\Wishlist;
 use Auth;
 use App\Http\Controllers\Controller;
 use Domain\Wishlist\Repository\WishlistRepository;
+use Illuminate\Http\Request;
 use Laravel\Lumen\Http\ResponseFactory;
 
-class ListWishlistsController extends Controller
+class StoreWishlistController extends Controller
 {
     /**
      * @var WishlistRepository
@@ -28,11 +29,22 @@ class ListWishlistsController extends Controller
         parent::__construct($responseFactory);
     }
 
-    public function __invoke()
+    protected function rules(): array
     {
+        return [
+            'name' => 'required'
+        ];
+    }
+
+    public function __invoke(Request $request)
+    {
+        $wishlistData = $request->input();
+        $wishlistData['user_id'] = Auth::id();
+
+        $wishlist = $this->wishlistRepository->create($wishlistData);
         return $this->responseFactory->json([
             'ok' => true,
-            'wishlists' => $this->wishlistRepository->allForUser(Auth::id())
+            'wishlist' => $wishlist->toArray()
         ]);
     }
 }

@@ -10,5 +10,6 @@ composer install --no-progress --no-ansi --no-interaction
 
 php artisan migrate:refresh
 php artisan passport:install --force
+php artisan db:seed
 
 sudo /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf

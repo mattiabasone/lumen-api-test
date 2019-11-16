@@ -15,4 +15,11 @@ class Wishlist extends Model
         'name',
         'user_id',
     ];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'int'
+    ];
 }

@@ -20,10 +20,15 @@ $router->group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], static functi
         $router->get('/', 'ListProductsController');
         $router->group(['middleware' => 'auth:api,admin'], static function() use ($router) {
             $router->post('/', 'StoreProductController');
+            $router->put('/{id}', 'UpdateProductController');
+            $router->delete('/{id}', 'DestroyProductController');
         });
     });
 
     $router->group(['prefix' => 'wishlist', 'namespace' => 'Api\V1\Wishlist'], function () use ($router) {
         $router->get('/', 'ListWishlistsController');
+        $router->post('/', 'StoreWishlistController');
+        $router->put('/{id}', 'UpdateWishlistController');
+        $router->delete('/{id}', 'DestroyWishlistController');
     });
 });

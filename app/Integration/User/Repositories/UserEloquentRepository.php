@@ -22,9 +22,9 @@ class UserEloquentRepository implements UserRepository
     /**
      * @param array $productData
      */
-    public function create(array $productData): void
+    public function create(array $productData): User
     {
-        User::create($productData);
+        return User::create($productData);
     }
 
     /**

@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Laravel\Lumen\Http\ResponseFactory;
 
 /**
- * Class StoreProductController
+ * Class UpdateProductController
  */
-class StoreProductController extends Controller
+class UpdateProductController extends Controller
 {
     /** @var ProductRepository */
     private $productRepository;
@@ -42,18 +42,25 @@ class StoreProductController extends Controller
 
     /**
      * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $id)
     {
         $this->executeValidation($request);
 
-        $newProduct = $this->productRepository->create($request->input());
+        $productId = (int) $id;
+        if (!$this->productRepository->exists($productId)) {
+            return $this->buildEntityNotFoundResponse();
+        }
+
+        $this->productRepository->update($request->input(), $productId);
+        $updatedProduct = $this->productRepository->getById($productId);
 
         return $this->responseFactory->json([
             'ok' => true,
-            'product' => $newProduct->toArray()
+            'product' => $updatedProduct->toArray()
         ]);
     }
 }

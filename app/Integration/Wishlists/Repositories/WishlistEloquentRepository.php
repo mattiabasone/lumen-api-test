@@ -19,9 +19,24 @@ class WishlistEloquentRepository implements WishlistRepository
         return Wishlist::query()->find($wishlistId);
     }
 
-    public function create(array $productData): void
+    /**
+     * @param array $productData
+     * @return Wishlist
+     */
+    public function create(array $productData): Wishlist
     {
-        Wishlist::create($productData);
+        return Wishlist::create($productData);
+    }
+
+    /**
+     * @param int $wishlistId
+     * @return bool
+     */
+    public function exists(int $wishlistId): bool
+    {
+        return Wishlist::query()
+            ->where('id', '=', $wishlistId)
+            ->exists();
     }
 
     /**

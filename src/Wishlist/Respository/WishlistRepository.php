@@ -11,7 +11,9 @@ interface WishlistRepository
 {
     public function getById(int $wishlistId): ?Wishlist;
 
-    public function create(array $wishlistData): void;
+    public function create(array $wishlistData): Wishlist;
+
+    public function exists(int $wishlistId): bool;
 
     public function update(array $wishlistData, int $wishlistId): void;
 
