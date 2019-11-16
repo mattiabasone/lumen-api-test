@@ -11,9 +11,21 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+use Illuminate\Support\Facades\Hash;
+
+$factory->define(App\Models\User::class, static function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
         'email' => $faker->email,
+        'name' => $faker->firstName,
+        'surname' => $faker->lastName,
+        'password' => Hash::make('password'),
+        'role' => $faker->randomElement(['user', 'admin'])
+    ];
+});
+
+$factory->define(App\Models\Product::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->company,
+        'price' => $faker->randomNumber(2),
     ];
 });

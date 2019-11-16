@@ -1,7 +1,4 @@
 /vendor
 /.idea
-**/.env
-
-docker/storage/mysql/*
-
-!docker/storage/mysql/.gitkeep
+docker/storage/*
+_ide_helper.php

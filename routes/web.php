@@ -11,6 +11,19 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+/* @var \Laravel\Lumen\Routing\Router $router */
+
+$router->get('/', 'DashboardController');
+
+$router->group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], static function () use ($router) {
+    $router->group(['prefix' => 'product', 'namespace' => 'Api\V1\Product'], static function () use ($router) {
+        $router->get('/', 'ListProductsController');
+        $router->group(['middleware' => 'auth:api,admin'], static function() use ($router) {
+            $router->post('/', 'StoreProductController');
+        });
+    });
+
+    $router->group(['prefix' => 'wishlist', 'namespace' => 'Api\V1\Wishlist'], function () use ($router) {
+        $router->get('/', 'ListWishlistsController');
+    });
 });

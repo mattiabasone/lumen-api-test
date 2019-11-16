@@ -8,4 +8,7 @@ cd /app
 
 composer install --no-progress --no-ansi --no-interaction
 
+php artisan migrate:refresh
+php artisan passport:install --force
+
 sudo /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
