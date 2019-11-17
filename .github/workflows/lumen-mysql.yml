@@ -67,5 +67,3 @@ jobs:
         run: vendor/bin/phpunit --coverage-text --coverage-clover clover.xml
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-      - name: Upload Coveralls
-        run: vendor/bin/php-coveralls -x clover.xml -o coveralls-upload.json
