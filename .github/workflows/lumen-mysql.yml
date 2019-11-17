@@ -6,6 +6,7 @@ jobs:
     name: Lumen (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
     env:
+      DB_HOST: localhost
       DB_DATABASE: lumen
       DB_USERNAME: root
       DB_PASSWORD: password
@@ -59,7 +60,7 @@ jobs:
         run: php artisan db:seed
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-      - name: Initialize OAuth Configuration  
+      - name: Initialize OAuth Configuration
         run: php artisan passport:install
       - name: Test with phpunit
         run: vendor/bin/phpunit --coverage-text
