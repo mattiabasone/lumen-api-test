@@ -3,6 +3,8 @@
 .composer/*
 docker/storage/*
 _ide_helper.php
+.phpunit.result.cache
+phpunit.xml.dist
 
 storage/oauth-private.key
 storage/oauth-public.key

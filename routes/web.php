@@ -25,10 +25,18 @@ $router->group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], static functi
         });
     });
 
-    $router->group(['prefix' => 'wishlist', 'namespace' => 'Api\V1\Wishlist'], function () use ($router) {
+    $router->group(['prefix' => 'wishlist', 'namespace' => 'Api\V1\Wishlist'], static function () use ($router) {
         $router->get('/', 'ListWishlistsController');
         $router->post('/', 'StoreWishlistController');
-        $router->put('/{id}', 'UpdateWishlistController');
-        $router->delete('/{id}', 'DestroyWishlistController');
+
+        $router->group(['middlewre' => 'verify_wishlist_ownership'], static function() use ($router) {
+            $router->put('/{id}', 'UpdateWishlistController');
+            $router->delete('/{id}', 'DestroyWishlistController');
+
+            $router->post('/{id}/product/{product_id}', 'AddProductToWishlistController');
+            $router->delete('/{id}/product/{product_id}', 'RemoveProductToWishlistController');
+        });
+
+
     });
 });

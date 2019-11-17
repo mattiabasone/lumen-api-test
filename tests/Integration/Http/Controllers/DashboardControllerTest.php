@@ -2,11 +2,7 @@
 
 class DashboardControllerTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    /** @test */
     public function shouldReturnPage(): void
     {
         $result = $this->get('/');

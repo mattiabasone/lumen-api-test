@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Response;
+use Laravel\Lumen\Http\ResponseFactory;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
 class Authenticate
@@ -13,6 +15,10 @@ class Authenticate
      * @var \Illuminate\Contracts\Auth\Factory
      */
     protected $auth;
+    /**
+     * @var ResponseFactory
+     */
+    private $responseFactory;
 
     /**
      * Create a new middleware instance.
@@ -20,9 +26,10 @@ class Authenticate
      * @param  \Illuminate\Contracts\Auth\Factory  $auth
      * @return void
      */
-    public function __construct(Auth $auth)
+    public function __construct(Auth $auth, ResponseFactory $responseFactory)
     {
         $this->auth = $auth;
+        $this->responseFactory = $responseFactory;
     }
 
     /**
@@ -36,7 +43,10 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+            return $this->responseFactory->json([
+                'ok' => false,
+                'error' => 'Unauthorized.',
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
         return $next($request);
