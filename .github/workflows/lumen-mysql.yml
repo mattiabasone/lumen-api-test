@@ -69,7 +69,7 @@ jobs:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
       - name: Send to Coveralls
         if: matrix.php-versions == '7.3'
-        run: php vendor/bin/php-coveralls -v --coverage_clover=clover.xml
+        run: vendor/bin/php-coveralls -v -x clover.xml -o coveralls-upload.json
         env:
           COVERALLS_RUN_LOCALLY: 1
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
