@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1\Wishlist;
 
-use Auth;
 use App\Http\Controllers\Controller;
 use Domain\Product\Repository\ProductRepository;
 use Domain\Wishlist\Repository\WishlistRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Laravel\Lumen\Http\ResponseFactory;
 
 class AddProductToWishlistController extends Controller
@@ -38,18 +38,22 @@ class AddProductToWishlistController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(Request $request, $id)
+    public function __invoke(Request $request, $id, $product_id)
     {
-        $wishlistId = (int) $id;
-        if (!$this->wishlistRepository->exists($wishlistId)) {
-            return $this->buildEntityNotFoundResponse();
+        $wishlist = $this->wishlistRepository->getById((int) $id);
+        $product = $this->productRepository->getById((int) $product_id);
+
+        if ($wishlist === null || $product === null) {
+            return $this->responseFactory->json([
+                'ok' => false,
+                'error' => 'Invalid data'
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        // TODO: Business logic for adding products
+        $this->wishlistRepository->addProduct($wishlist, $product);
 
         return $this->responseFactory->json([
-            'ok' => true,
-            'wishlist' => $wishlist->toArray()
+            'ok' => true
         ]);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Domain\Product\Repository\ProductRepository;
 use Domain\Wishlist\Repository\WishlistRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Laravel\Lumen\Http\ResponseFactory;
 
 class RemoveProductToWishlistController extends Controller
@@ -43,13 +44,17 @@ class RemoveProductToWishlistController extends Controller
      */
     public function __invoke(Request $request, $id, $product_id)
     {
-        $wishlistId = (int) $id;
-        $productId = (int) $product_id;
-        if (!$this->productRepository->exists($productId)) {
-            return $this->buildEntityNotFoundResponse();
+        $wishlist = $this->wishlistRepository->getById((int) $id);
+        $product = $this->productRepository->getById((int) $product_id);
+
+        if ($wishlist === null || $product === null) {
+            return $this->responseFactory->json([
+                'ok' => false,
+                'error' => 'Invalid data'
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        // TODO: Business logic for removing products
+        $this->wishlistRepository->removeProduct($wishlist, $product);
 
         return $this->responseFactory->json([
             'ok' => true,

@@ -29,10 +29,11 @@ $router->group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], static functi
         $router->get('/', 'ListWishlistsController');
         $router->post('/', 'StoreWishlistController');
 
-        $router->group(['middlewre' => 'verify_wishlist_ownership'], static function() use ($router) {
+        $router->group(['middleware' => 'verify_wishlist_ownership:api'], static function() use ($router) {
             $router->put('/{id}', 'UpdateWishlistController');
             $router->delete('/{id}', 'DestroyWishlistController');
 
+            $router->get('/{id}/product', 'ListProductsOnWishlistController');
             $router->post('/{id}/product/{product_id}', 'AddProductToWishlistController');
             $router->delete('/{id}/product/{product_id}', 'RemoveProductToWishlistController');
         });

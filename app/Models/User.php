@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 use Laravel\Passport\HasApiTokens;
 
+/**
+ * Class User
+ * @property int $id
+ * @property string $name
+ * @property string
+ */
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use HasApiTokens, Authenticatable, Authorizable;
@@ -19,8 +25,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
+        'password',
+        'name',
+        'surname',
+        'role',
     ];
 
     /**
@@ -38,5 +47,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getFullNameAttribute(): string
     {
         return trim($this->attributes['name'].' '.$this->attributes['surname']);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->attributes['role'] === 'admin';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function wishlists(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\Wishlist::class, 'user_id', 'id');
     }
 }

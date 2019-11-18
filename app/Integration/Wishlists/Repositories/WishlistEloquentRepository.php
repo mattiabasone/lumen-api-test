@@ -2,6 +2,7 @@
 
 namespace App\Integration\Product\Repositories;
 
+use App\Models\Product;
 use App\Models\Wishlist;
 use Domain\Wishlist\Repository\Exceptions\ErrorDeletingWishlistException;
 use Domain\Wishlist\Repository\Exceptions\ErrorUpdatingWishlistException;
@@ -17,6 +18,21 @@ class WishlistEloquentRepository implements WishlistRepository
     public function getById(int $wishlistId): ?Wishlist
     {
         return Wishlist::query()->find($wishlistId);
+    }
+
+    /**
+     * Checks wishlist ownership
+     *
+     * @param int $wishlistId
+     * @param int $userId
+     * @return bool
+     */
+    public function userIsOwner(int $wishlistId, int $userId): bool
+    {
+        return Wishlist::query()
+            ->where('id', '=', $wishlistId)
+            ->where('user_id', '=', $userId)
+            ->exists();
     }
 
     /**
@@ -87,5 +103,15 @@ class WishlistEloquentRepository implements WishlistRepository
         return Wishlist::query()
             ->where('user_id', '=', $userId)
             ->get();
+    }
+
+    public function addProduct(Wishlist $wishlist, Product $product): void
+    {
+        $wishlist->products()->syncWithoutDetaching([$product->id]);
+    }
+
+    public function removeProduct(Wishlist $wishlist, Product $product): void
+    {
+        $wishlist->products()->detach([$product->id]);
     }
 }

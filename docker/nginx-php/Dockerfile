@@ -27,7 +27,7 @@ RUN add-apt-repository -y ppa:nginx/stable && \
    	rm -rf /var/lib/apt/lists/*
 
 # Adding phpcanister user
-RUN useradd app_user -u ${HOST_USER_UID} -d /app -s /bin/bash
+RUN useradd app_user -u ${HOST_USER_UID} -d /home/app_user -s /bin/bash
 RUN groupmod app_user -g ${HOST_USER_UID}
 RUN echo "app_user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/app_user
 
@@ -41,15 +41,17 @@ COPY nginx/conf.d/*.conf /etc/nginx/conf.d/
 # Copying FPM pools configuration
 COPY fpm/7.3.conf /etc/php/7.3/fpm/pool.d/www.conf
 
+# Copying supervisor configuiration
+COPY supervisor/* /etc/supervisor/conf.d/
+
 # Creating dir for php-fpm sockets
 RUN mkdir /run/php/
 RUN chown app_user:root /run/php/
 
-COPY supervisor/* /etc/supervisor/conf.d/
+RUN mkdir -p /app
+RUN chown -R app_user:app_user /app
 
 VOLUME "/app"
-
-RUN chown -R app_user:app_user /app
 
 USER app_user
 WORKDIR /app

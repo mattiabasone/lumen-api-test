@@ -59,12 +59,13 @@ $app->singleton(
 */
 
 // $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
+//     App\Http\Middleware\ExampleMiddleware::classw
 // ]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
-    'auth_role' => App\Http\Middleware\AuthCheckRole::class
+    'auth_role' => App\Http\Middleware\AuthCheckRole::class,
+    'verify_wishlist_ownership' => App\Http\Middleware\VerifyWishlistOwnership::class,
 ]);
 
 /*
