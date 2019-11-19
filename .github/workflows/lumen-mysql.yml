@@ -1,6 +1,10 @@
 # GitHub Action for Lumen with MySQL and Redis
 name: Testing Lumen with MySQL
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
 jobs:
   lumen:
     name: Lumen (PHP ${{ matrix.php-versions }})
