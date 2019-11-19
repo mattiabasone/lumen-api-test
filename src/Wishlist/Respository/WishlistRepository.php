@@ -7,6 +7,7 @@ namespace Domain\Wishlist\Repository;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface WishlistRepository
 {
@@ -29,4 +30,6 @@ interface WishlistRepository
     public function addProduct(Wishlist $wishlist, Product $product): void;
 
     public function removeProduct(Wishlist $wishlist, Product $product): void;
+
+    public function paginateForExport($currentPage, $perPage = 100): LengthAwarePaginator;
 }

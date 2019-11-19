@@ -16,7 +16,7 @@ RUN add-apt-repository -y ppa:nginx/stable && \
     LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     apt-get update && \
     # PHP73
-    apt-get install --no-install-recommends -y php7.3 php7.3-calendar  php7.3-ctype php7.3-curl php7.3-dom php7.3-exif \
+    apt-get install --no-install-recommends -y php7.3 php7.3-calendar php7.3-ctype php7.3-curl php7.3-dom php7.3-exif \
     php7.3-fileinfo php7.3-ftp php7.3-gd php7.3-gettext php7.3-iconv php7.3-intl php7.3-json \
 	php7.3-mbstring php7.3-mysql php7.3-mysqli php7.3-mysqlnd \
    	php7.3-PDO php7.3-Phar php7.3-posix php7.3-readline php7.3-shmop \
@@ -27,8 +27,10 @@ RUN add-apt-repository -y ppa:nginx/stable && \
    	rm -rf /var/lib/apt/lists/*
 
 # Adding phpcanister user
+RUN mkdir -p /home/app_user
 RUN useradd app_user -u ${HOST_USER_UID} -d /home/app_user -s /bin/bash
 RUN groupmod app_user -g ${HOST_USER_UID}
+RUN chown -R app_user:app_user /home/app_user
 RUN echo "app_user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/app_user
 
 # Installing composer

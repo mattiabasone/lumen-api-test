@@ -13,6 +13,19 @@
 
 use Illuminate\Support\Facades\Hash;
 
+function getUserIdList(): array
+{
+    global $userIdList;
+    if (empty($userIdList)) {
+        $userIdList = App\Models\User::query()
+            ->select(['id'])
+            ->where('role', '=', 'user')
+            ->pluck('id')
+            ->toArray();
+    }
+    return $userIdList;
+}
+
 $factory->define(App\Models\User::class, static function (Faker\Generator $faker) {
     return [
         'email' => $faker->email,
@@ -27,5 +40,12 @@ $factory->define(App\Models\Product::class, static function (Faker\Generator $fa
     return [
         'name' => $faker->company,
         'price' => $faker->randomNumber(2),
+    ];
+});
+
+$factory->define(App\Models\Wishlist::class, static function (Faker\Generator $faker) {
+    return [
+        'user_id' => $faker->randomElement(getUserIdList()),
+        'name' => $faker->colorName,
     ];
 });

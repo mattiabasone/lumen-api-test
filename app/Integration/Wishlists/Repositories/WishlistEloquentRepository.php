@@ -7,6 +7,7 @@ use App\Models\Wishlist;
 use Domain\Wishlist\Repository\Exceptions\ErrorDeletingWishlistException;
 use Domain\Wishlist\Repository\Exceptions\ErrorUpdatingWishlistException;
 use Domain\Wishlist\Repository\WishlistRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class WishlistEloquentRepository implements WishlistRepository
@@ -113,5 +114,20 @@ class WishlistEloquentRepository implements WishlistRepository
     public function removeProduct(Wishlist $wishlist, Product $product): void
     {
         $wishlist->products()->detach([$product->id]);
+    }
+
+    /**
+     * Paginate wishlist for export
+     *
+     * @param int $currentPage
+     * @param int $perPage
+     * @return LengthAwarePaginator
+     */
+    public function paginateForExport($currentPage = 1, $perPage = 100): LengthAwarePaginator
+    {
+        return Wishlist::query()
+            ->with(['user:id,name,surname,email'])
+            ->withCount(['products'])
+            ->paginate($perPage, ['*'], 'page', $currentPage);
     }
 }

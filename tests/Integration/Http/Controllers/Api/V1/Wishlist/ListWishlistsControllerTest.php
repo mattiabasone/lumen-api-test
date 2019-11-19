@@ -17,9 +17,13 @@ class ListWishlistsControllerTest extends TestCase
     public function shouldDisplayEmptyWishlist(): void
     {
         /** @var \App\Models\User $user */
-        $user = \App\Models\User::query()
-            ->where('role', '=', 'user')
-            ->first();
+        $user = \App\Models\User::query()->create([
+            'name' => 'TestUserName',
+            'surname' => 'TestUserSurname',
+            'email' => 'pippo@example.org',
+            'role' => 'user',
+            'password' => \Illuminate\Support\Facades\Hash::make('pippo')
+        ]);
 
         $this->actingAs($user)
             ->json('GET', '/api/v1/wishlist')
