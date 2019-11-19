@@ -5,18 +5,25 @@
  */
 class ListProductsControllerTest extends TestCase
 {
-
     /** @test */
     public function shouldReturnUnAuthorizedForInvalidUser(): void
     {
-        $result = $this->get('/api/v1/product');
+        $this->json('GET', '/api/v1/product')
+            ->seeStatusCode(401)
+            ->seeJsonEquals(['ok' => false, 'error' => 'Unauthorized.']);
+    }
 
-        $actualStatusCode = $result->response->getStatusCode();
-        $actualContent = json_decode($result->response->getContent(), true);
+    /** @test */
+    public function shouldListProducts(): void
+    {
+        /** @var \App\Models\User $user */
+        $user = \App\Models\User::query()
+            ->where('role', '=', 'user')
+            ->first();
 
-        $expectedContent = ['ok' => false, 'error' => 'Unauthorized.'];
-
-        $this->assertEquals(401, $actualStatusCode);
-        $this->assertEquals($expectedContent, $actualContent);
+        $this->actingAs($user)
+            ->json('GET', '/api/v1/product')
+            ->seeStatusCode(200)
+            ->seeJsonStructure(['ok', 'products']);
     }
 }

@@ -19,6 +19,8 @@ services:
   nginx-php:
     image: lumen-api-test-nginx-php:7.3
     container_name: lumen-api-test-nginx-php
+    depends_on:
+      - db
     build:
       context: ./nginx-php
       args:
