@@ -1,0 +1,545 @@
+{
+	"info": {
+		"_postman_id": "eb0b6057-e609-4dcf-9bc7-2065cff69db9",
+		"name": "LumenApiTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "OAuth Issue Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "OaW4DRu6SQkuk0bRHAOBJduJP7xBBnOHHg54v4Oh",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "ahauck@erdman.biz",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "List Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "MyProduct",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "99.11",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pippo",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "66.55",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/product/51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/product/5111212",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"5111212"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "List Wishlists",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/v1/wishlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "MyWishlist",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/wishlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "MyWishlist",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/wishlist/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTAxNWIxZTQ3YTg3NWViNDY2Y2ZlNDQ5YmVjZTM5ZGJlYjdiM2NlYTg1YTA0MmM2ZDMxOTEzNGQ2MmUzMzdmZGY3ZWVhMGNiY2U0MTkyOTEiLCJpYXQiOjE1NzM5MDIxNDksIm5iZiI6MTU3MzkwMjE0OSwiZXhwIjoxNjA1NTI0NTQ5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.mDbV5tRRycCqEAcIAFRWfS37cxvpm0JQkG1m0gkn3eCN0esM1kYc87ORIS7jVd-aG9Z8HxR-EAkiRMuXjYN5Ydi3nMtGcJOEvR6BY3yCmgmcpP5Hf8opRyiNiPMbCAzZf321pykM2NtDGHpQ8rXw90cMRx3tVV7Poejpsg9E-1EPFHa5E4vSqjmKErAzxlsChaMD1lxc3KtU3RNEtQeEQ7DCkOyf0B9_Bfi_7-nze5eDH02U6jKEw88nbRZKReu5LJjdDxpuMUuINZEfhasz2AsyvgZsEIzXCP60ASrWSh93dGOfayA4iuGxCYIEH40-c3zjMMCFXW1lDhLARXtFtClumRHG4rlyBElusLeRX5_v9pLbMCH2WuTMhSm6bNd5doK7jV1hJ3Z1b5Tl_QArKrqgkXU7kP1aJ-7EZazd-ONeaiM8RuLzmLOO9lfbXkZLtgD9oR2QgSU_yBjNA_p1wHh01uEa_t1towGAxbqniNP_wJneOg_RB3uCiRIaa13lvuXl1lk5cwdte6MeNeoZW3wOGfHwyTsT6E36bSne7ZV6iPpdLI9eHsTW6iQT1e6AA01_K9xEwlsF449Gif896AcPlGeHBXisDpWEZysfyCNl4J7ha0rP51WpzIUdwtPQhVM3QtMHfTlLmXVtZzlKWFOkXosxlzjI4RaR7wZcP7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/wishlist/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Wishlist Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/v1/wishlist/1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist",
+								"1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product To Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiY2Y2MTBkZTgzZDhkZWUzNTMwZjRjMDhlNjRmOTFlNjNlNGFlNWQ4NGUxZGI4NTIzOTQwNmQ2ZGRiNzk1ZDFkZjkwNGEzZGE3NDRkNGY1NzIiLCJpYXQiOjE1NzQxMTg3MjQsIm5iZiI6MTU3NDExODcyNCwiZXhwIjoxNjA1NzQxMTI0LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.pQDs5w1_i9ujnCDPU1GK_rzhoEmEs024Hq__CPAtlxvhPwWYkLKQjhN9kcLyFx_AyW_ZLR9vgVDrxKqgBY-d28KgW6XgTyCLWZFbJEL_IKhigj4XE2s5EnbKU4VUOXKbNgB_rNCMpujpseRoHxrmBZxvUEbo8OTSN_yI72jqdZoHFNtwkV94ZRups0267zzyVsz6-znropFmWHfC7CaGaY2yK9eEquEQ085u8Nl8zx5R8pnFxkainsBWbcuMd2OAbPsKsugE3m7YfvbWKVoXYs_JYyPTPz7ulPr9vK7v1IcHYd6UdJI7QVxl8uS5VKaNhoVe7SEM6ISm3L6pWTZloq312P5ck0FUrSHiX-uN3Z5NxqrAqY5LsIdwoOu62N_5yAW-fDPLyEPLFh-jfXGtbcAJDYng7BxmW5iGnOm2M5MsmfH33DhPiCuibwhIEUKjaKoBnTNNiYBYxYmFlKDegTI3ojrVisPoSqPwgVEnRkXSeIeEXqIn6fyLH-at2RKKJHI2IBUO1K0hjUvBPQJJMTS_wj_WNKNqman6omwQivqelChm_l5Y57Oldw-CrEw1Ja0A8y79RPU42UmnPDIox_E9Bz0tmS8PeLGq6-aT6cMe7wiZmku1L5yfL37zzVfHK1jYBRUUY_I8Ye3xOuLTh4mI5ty5Q4_PkMcEcLUQDug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "MyWishlist",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/wishlist/1/product/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist",
+								"1",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Product From Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiNWExNTZhZjg1ZTg1OWE3YWNmNTdiYTZiZWQzNmZhYmM4MGEzZDI5ZTVjOGI2ZWZjNWYzMDI2NDYwOTE4NTk4YjJjYTVjNzQ0MmIyYmQ2ZGMiLCJpYXQiOjE1NzQxMTYwNDEsIm5iZiI6MTU3NDExNjA0MSwiZXhwIjoxNjA1NzM4NDQxLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.u0u-hM2yaYK7dCD9kWCY7XCJRTJ7RNYP_SApHXZ0UL-SAVh5RmydYVlSTqyUVbUzHhBXslL26Sd6GuWESKkcqjr7h82LErk0qEHwkM_vfqjjGdNiE8EnJm0fGAYGOQN6TbJYENsGjJwny3eq4ZQT7AJvI8ixEeCxbgDBiGfGEveSb68gh-lsgiqzWq9k_2zmlXvCm_mMK-eff4hqD0QVNVH5t8vgTbi0ghP4hM4PinH2sYOfwK8y_qlQ1nDVZufGHqhK9V53Z06OE9iKO9LSCfJMykkQVWGXO-nsjIqhE0oBffJyhfFxmgipopdZEgRhDA8Ll0DYpO1gNLAMy58KjUYKT43iYXNZL3CvKY6mekT4y9Vu7Xme-Ggi0vDTTTZyN_VYvEqhzlZ63ays-Gvqgl0vlVBg4EJn29hU31cdZOQamLi4Zlng9OoNHsQzZeI-UE2Ao1zGtw_yPxE0g75Ep_r012ibOElCdTFnt7pZt-2zGMOJpNPg0R8Ror4O8AewQ_TnYf_91BOHDM9xt0GX1ccUYChMTsdIIthXlRLkwjGTil3tbLaCh3oMQMYXoYXm1PUd9wT5N9hwxe4OlIQ5EoJW5zRisGgGYA38lUjh3jtiqhRMSMfByzsrmgpvRuDG-RIShXguG_hFTL8-YLlChx1Ovj4TSz0kwvTx-r722Ag",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "MyWishlist",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/wishlist/1/product/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist",
+								"1",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
