@@ -47,8 +47,8 @@ class AuthCheckRole
         if ($this->auth->guard($guard)->user()->role !== $role) {
             return $this->responseFactory->json([
                 'ok' => false,
-                'error' => 'Unauthorized.'
-            ], 401);
+                'error' => 'Forbidden.'
+            ], 403);
         }
         return $next($request);
     }

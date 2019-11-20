@@ -18,7 +18,7 @@ $router->get('/', 'DashboardController');
 $router->group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], static function () use ($router) {
     $router->group(['prefix' => 'product', 'namespace' => 'Api\V1\Product'], static function () use ($router) {
         $router->get('/', 'ListProductsController');
-        $router->group(['middleware' => 'auth:api,admin'], static function() use ($router) {
+        $router->group(['middleware' => 'auth_role:api,admin'], static function() use ($router) {
             $router->post('/', 'StoreProductController');
             $router->put('/{id}', 'UpdateProductController');
             $router->delete('/{id}', 'DestroyProductController');
