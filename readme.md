@@ -8,11 +8,11 @@
 - `docker-compose build`
 - `docker-compose up`
 
-*docker-compose.yml configuration binds ports 80 (HTTP) and 33060 (MySQL)*
+*docker-compose.yml configuration binds ports 80 (HTTP) and 33060 (MySQL) on host*
 
 ### Application
 
-The docker entrypoint script will automatically run migration and some DB seeders.
+The docker entry point script will automatically run migration and some DB seeders.
 The data will be visible at [http://localhost](http://localhost)
 
 #### Authentication
