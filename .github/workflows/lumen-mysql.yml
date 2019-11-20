@@ -71,6 +71,15 @@ jobs:
         run: vendor/bin/phpunit --coverage-text --coverage-clover clover.xml
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+      - name: Extract branch name for Coveralls
+        if: matrix.php-versions == '7.3'
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: Checkout branch for Coveralls
+        if: matrix.php-versions == '7.3'
+        shell: bash
+        run: git fetch && git checkout ${{ steps.extract_branch.outputs.branch }}
       - name: Send to Coveralls
         if: matrix.php-versions == '7.3'
         run: vendor/bin/php-coveralls -v -x clover.xml -o coveralls-upload.json
