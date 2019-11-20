@@ -4,6 +4,7 @@ namespace App\Integration\Product\Repositories;
 
 use App\Models\Product;
 use App\Models\Wishlist;
+use Domain\Wishlist\Repository\Exceptions\ErrorCreatingWishlistException;
 use Domain\Wishlist\Repository\Exceptions\ErrorDeletingWishlistException;
 use Domain\Wishlist\Repository\Exceptions\ErrorUpdatingWishlistException;
 use Domain\Wishlist\Repository\WishlistRepository;
@@ -39,10 +40,19 @@ class WishlistEloquentRepository implements WishlistRepository
     /**
      * @param array $productData
      * @return Wishlist
+     * @throws ErrorCreatingWishlistException
      */
     public function create(array $productData): Wishlist
     {
-        return Wishlist::create($productData);
+        try {
+            return Wishlist::create($productData);
+        } catch (\Throwable $throwable) {
+            throw new ErrorCreatingWishlistException(
+                'Error creating new wishlist - '.$throwable->getMessage(),
+                0,
+                $throwable
+            );
+        }
     }
 
     /**

@@ -52,7 +52,8 @@ class ExportWishlists extends Command
     /**
      * Execute the console command.
      *
-     * @throws \Exception
+     * @param WishlistRepository $wishlistRepository
+     * @return int
      */
     public function handle(WishlistRepository $wishlistRepository): int
     {

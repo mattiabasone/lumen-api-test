@@ -21,6 +21,7 @@ class AddProductToWishlistController extends Controller
      * Create a new controller instance.
      *
      * @param WishlistRepository $wishlistRepository
+     * @param ProductRepository $productRepository
      * @param ResponseFactory $responseFactory
      */
     public function __construct(

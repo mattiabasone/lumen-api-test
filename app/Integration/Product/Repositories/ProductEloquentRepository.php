@@ -3,6 +3,7 @@
 namespace App\Integration\Product\Repositories;
 
 use App\Models\Product;
+use Domain\Product\Repository\Exceptions\ErrorCreatingProductException;
 use Domain\Product\Repository\ProductRepository;
 use Domain\Product\Repository\Exceptions\ErrorDeletingProductException;
 use Domain\Product\Repository\Exceptions\ErrorUpdatingProductException;
@@ -27,7 +28,15 @@ class ProductEloquentRepository implements ProductRepository
 
     public function create(array $productData): Product
     {
-        return Product::create($productData);
+        try {
+            return Product::create($productData);
+        } catch (\Throwable $throwable) {
+            throw new ErrorCreatingProductException(
+                'Error creating new product - '.$throwable->getMessage(),
+                0,
+                $throwable
+            );
+        }
     }
 
     /**

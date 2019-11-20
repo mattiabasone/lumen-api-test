@@ -2,8 +2,8 @@
 
 namespace App\Integration\Product\Repositories;
 
-use App\Models\Product;
 use App\Models\User;
+use Domain\User\Repository\Exceptions\ErrorCreatingUserException;
 use Domain\User\Repository\Exceptions\ErrorDeletingUserException;
 use Domain\User\Repository\Exceptions\ErrorUpdatingUserException;
 use Domain\User\Repository\UserRepository;
@@ -21,10 +21,20 @@ class UserEloquentRepository implements UserRepository
 
     /**
      * @param array $productData
+     * @return User
+     * @throws ErrorCreatingUserException
      */
     public function create(array $productData): User
     {
-        return User::create($productData);
+        try {
+            return User::create($productData);
+        } catch (\Throwable $throwable) {
+            throw new ErrorCreatingUserException(
+                'Error creating new user - '.$throwable->getMessage(),
+                0,
+                $throwable
+            );
+        }
     }
 
     /**
